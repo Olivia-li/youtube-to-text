@@ -4,7 +4,7 @@ from tqdm.auto import tqdm
 import json
 
 # load the video urls
-def get_video_urls(url_file):
+def get_video_urls(url_file="data/video_urls.json"):
     with open(url_file, "r") as f:
         return  json.load(f)
 
@@ -30,6 +30,6 @@ def download_youtube_mp3(video_urls, output_path):
 
         stream = yt.streams.get_by_itag(itag)
         stream.download(
-            output_path=f"{output_path}.mp3",
-            filename=yt.streams[0].title
+            output_path=output_path,
+            filename=f"{yt.streams[0].title}.mp3"
         )
